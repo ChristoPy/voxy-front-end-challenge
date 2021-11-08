@@ -1,4 +1,4 @@
-const { highest, alphabetically } = require('../../core/sort')
+const { highest, alphabetical } = require('../../core/sort')
 
 describe('Sort', () => {
   test('It should sort from highest number', async () => {
@@ -27,7 +27,7 @@ describe('Sort', () => {
     expect(sortedItems[1].studiedHours).toBe(189)
   })
 
-  test('It should sort alphabetically', async () => {
+  test('It should sort alphabetical', async () => {
     const items = [
       {
         email: 'zyan@zyan.io',
@@ -46,7 +46,7 @@ describe('Sort', () => {
         studiedHours: 260,
       },
     ]
-    const sortedItems = alphabetically(items, 'firstName')
+    const sortedItems = alphabetical(items, 'firstName')
 
     expect(sortedItems.length).toBe(2)
     expect(sortedItems[0].firstName).toBe('Bob')
