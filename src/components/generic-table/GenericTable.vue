@@ -7,13 +7,16 @@
           <th v-for="header of headers" :key="header.key">
             <div class="flex">
               {{ header.value }}
+              <div v-if="header.sortable">
+                <HeaderIcons :iconType="sortType"/>
+              </div>
             </div>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) of items" :key="index" class="hover">
-          <th>{{ index }}</th>
+          <th>{{ index + 1 }}</th>
           <td v-for="header of headers" :key="header.key">
             {{ item[header.key] }}
           </td>
@@ -24,7 +27,11 @@
 </template>
 
 <script>
+import { computed, ref } from 'vue'
+import HeaderIcons from './HeaderIcons.vue'
+
 export default {
+  components: { HeaderIcons },
   props: {
     headers: {
       type: Array,
@@ -35,5 +42,17 @@ export default {
       required: true
     }
   },
+  setup () {
+    const sortingLookup = {
+      true: 'ascending',
+      false: 'descending',
+    }
+    const sorting = ref(false)
+    const sortType = computed(() => sortingLookup[sorting.value])
+
+    return {
+      sortType,
+    }
+  }
 }
 </script>
