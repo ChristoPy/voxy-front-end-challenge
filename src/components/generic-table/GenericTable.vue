@@ -29,6 +29,7 @@
 <script>
 import HeaderIcons from './HeaderIcons.vue'
 import useTableFilter from '../../composables/table/sort'
+import { computed } from '@vue/reactivity'
 
 export default {
   components: { HeaderIcons },
@@ -43,7 +44,8 @@ export default {
     }
   },
   setup (props) {
-    const { toggleSort, sortOrder, sortedItems, sortedKeys } = useTableFilter(props.items)
+    const internalItems = computed(() => props.items)
+    const { toggleSort, sortOrder, sortedItems, sortedKeys } = useTableFilter(internalItems)
 
     return {
       sortedItems,
