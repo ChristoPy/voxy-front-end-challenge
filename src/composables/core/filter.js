@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import filter from '../core/filter'
+import filter from '../../core/filter'
 
 export default (items, key, value) => {
   const filteredItems = computed(() => {

@@ -1,10 +1,10 @@
 import { computed } from 'vue'
-import sort from '../core/sort'
+import sort from '../../core/sort'
 
 export const useHighestSort = (items, key) => {
   const filteredItems = computed(() => {
     if (!key.value) return items
-    return sort.highest(items, key.value)
+    return sort.highest(items.value, key.value)
   })
 
   return filteredItems
@@ -13,7 +13,7 @@ export const useHighestSort = (items, key) => {
 export const useAlphabeticalSort = (items, key) => {
   const filteredItems = computed(() => {
     if (!key.value) return items
-    return sort.alphabetical(items, key.value)
+    return sort.alphabetical(items.value, key.value)
   })
 
   return filteredItems
