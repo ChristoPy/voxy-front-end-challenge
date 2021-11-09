@@ -5,17 +5,17 @@
         <tr>
           <th></th>
           <th v-for="header of headers" :key="header.key">
-            <div class="flex">
+            <div class="flex" @click="header.sortable && toggleSort(header)">
               {{ header.value }}
               <div v-if="header.sortable">
-                <HeaderIcons :iconType="sortType"/>
+                <HeaderIcons :ascending="sortedKeys.has(header.key)"/>
               </div>
             </div>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) of items" :key="index" class="hover">
+        <tr v-for="(item, index) of sortedItems" :key="index" class="hover">
           <th>{{ index + 1 }}</th>
           <td v-for="header of headers" :key="header.key">
             {{ item[header.key] }}
@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue'
 import HeaderIcons from './HeaderIcons.vue'
+import useTableFilter from '../../composables/table/sort'
 
 export default {
   components: { HeaderIcons },
@@ -42,16 +42,14 @@ export default {
       required: true
     }
   },
-  setup () {
-    const sortingLookup = {
-      true: 'ascending',
-      false: 'descending',
-    }
-    const sorting = ref(false)
-    const sortType = computed(() => sortingLookup[sorting.value])
+  setup (props) {
+    const { toggleSort, sortOrder, sortedItems, sortedKeys } = useTableFilter(props.items)
 
     return {
-      sortType,
+      sortedItems,
+      sortOrder,
+      sortedKeys,
+      toggleSort,
     }
   }
 }

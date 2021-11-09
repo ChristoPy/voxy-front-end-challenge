@@ -12,7 +12,7 @@ import { ref } from 'vue'
 import SearchField from './SearchField.vue'
 import Card from '../Card'
 import GenericTable from '../generic-table/GenericTable.vue'
-import useFilter from '../../composables/filter'
+import useFilter from '../../composables/core/filter'
 import studentsMock from '../../mocks/students.json'
 
 export default {
@@ -23,12 +23,12 @@ export default {
   },
   setup() {
     const headers = ref([
-      { key: 'email', value: 'E-mail', sortable: true },
       { key: 'firstName', value: 'First name', sortable: true },
       { key: 'lastName', value: 'Last name', sortable: true },
+      { key: 'email', value: 'E-mail' },
       { key: 'group', value: 'group' },
       { key: 'phone', value: 'Phone' },
-      { key: 'studiedHours', value: 'Studied hours', sortable: true },
+      { key: 'studiedHours', value: 'Studied hours', sortable: true, sortType: 'highest' },
     ])
     const searchKey = ref('firstName')
     const searchValue = ref('')
