@@ -1,17 +1,17 @@
 <template>
-  <div class="min-h-full flex h-screen justify-center px-8">
+  <div class="min-h-full flex h-screen justify-center px-8 bg-base-200">
     <div class="container lg mx-auto mt-12">
-      <StudentsList />
+      <StudentsTable />
     </div>
   </div>
 </template>
 
 <script>
-import StudentsList from '@/components/students-list/StudentsList'
+import StudentsTable from '@/components/students-table/StudentsTable'
 
 export default {
   components: {
-    StudentsList
+    StudentsTable
   }
 }
 </script>

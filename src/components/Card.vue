@@ -11,3 +11,11 @@ export default {
   name: 'Card'
 }
 </script>
+
+<style scoped>
+
+.card .card-body {
+  padding: 0;
+}
+
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-x-auto">
     <table class="table w-full table-zebra">
-      <thead>
+      <thead class="select-none">
         <tr>
           <th></th>
           <th v-for="header of headers" :key="header.key">
@@ -29,7 +29,7 @@
 <script>
 import HeaderIcons from './HeaderIcons.vue'
 import useTableFilter from '../../composables/table/sort'
-import { computed } from '@vue/reactivity'
+import { computed } from 'vue'
 
 export default {
   components: { HeaderIcons },
