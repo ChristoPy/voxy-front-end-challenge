@@ -1,0 +1,34 @@
+[
+  {
+    "email": "notbob@jenkins.com",
+    "firstName": "not bob",
+    "lastName": "jenkins",
+    "group": "Primary",
+    "phone": "+55 (11) 4002-8921",
+    "studiedHours": 189
+  },
+  {
+    "email": "bob@jenkins.com",
+    "firstName": "Bob",
+    "lastName": "Jenkins",
+    "group": "Primary",
+    "phone": "+55 (11) 4002-8922",
+    "studiedHours": 260
+  },
+  {
+    "email": "zyan@zyan.io",
+    "firstName": "Zyan",
+    "lastName": "Pilgrin",
+    "group": "Secondary",
+    "phone": "+55 (11) 4002-8923",
+    "studiedHours": 195
+  },
+  {
+    "email": "dylan@corporate.io",
+    "firstName": "Dylan",
+    "lastName": "Smith",
+    "group": "Primary",
+    "phone": "+55 (11) 4002-8924",
+    "studiedHours": 0
+  }
+]
