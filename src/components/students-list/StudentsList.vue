@@ -2,18 +2,19 @@
   <div>
     <SearchField v-model="searchValue"/>
     <Card>
-      <GenericTable :items="students" :headers="headers" />
+      <GenericTable :items="items" :headers="headers" />
     </Card>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, inject, computed } from 'vue'
 import SearchField from './SearchField.vue'
 import Card from '../Card'
 import GenericTable from '../generic-table/GenericTable.vue'
-import useFilter from '../../composables/core/filter'
-import studentsMock from '../../mocks/students.json'
+import { studentsStateSymbol } from '../../contexts/students'
+import { searchStateSymbol } from '../../contexts/search'
+import { TABLE_HEADERS } from '../../constants/students/index'
 
 export default {
   components: {
@@ -22,21 +23,22 @@ export default {
     GenericTable
   },
   setup() {
-    const headers = ref([
-      { key: 'firstName', value: 'First name', sortable: true },
-      { key: 'lastName', value: 'Last name', sortable: true },
-      { key: 'email', value: 'E-mail' },
-      { key: 'group', value: 'group' },
-      { key: 'phone', value: 'Phone' },
-      { key: 'studiedHours', value: 'Studied hours', sortable: true, sortType: 'highest' },
-    ])
-    const searchKey = ref('firstName')
+    const students = inject(studentsStateSymbol)
+    const search = inject(searchStateSymbol)
+
     const searchValue = ref('')
-    const students = useFilter(ref(studentsMock), searchKey, searchValue)
+    const searchKey = ref('firstName')
+
+    search.setItems(students.state.all)
+    search.setTerm(searchValue)
+    search.setKey(searchKey)
+    search.onSearch(students.setCurrentStudents)
+
+    const items = computed(() => students.state.current)
 
     return {
-      students,
-      headers,
+      items,
+      headers: TABLE_HEADERS,
       searchValue
     }
   }
